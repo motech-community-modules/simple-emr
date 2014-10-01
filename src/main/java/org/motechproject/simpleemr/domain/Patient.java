@@ -37,4 +37,7 @@ public class Patient {
     public void setFacility(Facility facility) {
         this.facility = facility;
     }
+
+    // TODO: hashCode, equals
+
 }
