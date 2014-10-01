@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.motechproject.sample.domain.Patient;
-import org.motechproject.sample.repository.PatientDataService;
-import org.motechproject.sample.service.PatientService;
+import org.motechproject.sample.domain.Person;
+import org.motechproject.sample.repository.PersonDataService;
+import org.motechproject.sample.service.PersonService;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,45 +28,43 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
-/**
- * Verify that HelloWorldAuthorService present, functional.
- */
+
 @RunWith(PaxExam.class)
 @ExamReactorStrategy(PerSuite.class)
 @ExamFactory(MotechNativeTestContainerFactory.class)
-public class PatientServiceIT extends BasePaxIT {
+public class PersonServiceIT extends BasePaxIT {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Inject
-    private PatientService pataientService;
+    private PersonService personService;
     @Inject
-    private PatientDataService patientDataService;
+    private PersonDataService personDataService;
 
     @Test
-    public void testPatientService() throws Exception {
+    public void testPersonService() throws Exception {
 
-        logger.info("testPatientService");
+        logger.info("testPersonService");
 
-        patientDataService.deleteAll();
+        personDataService.deleteAll();
 
-        Patient firstPatient = patientDataService.create("Marge", "Simpson");
-        Patient secondPatient = patientDataService.create("Homer", "Simpson");
+        Person firstPerson = personDataService.create("Marge", "Simpson");
+        Person secondPerson = personDataService.create("Homer", "Simpson");
 
-        logger.info("Created patient id {}", patientDataService.getDetachedField(firstPatient, "id"));
-        logger.info("Created patient id {}", patientDataService.getDetachedField(secondPatient, "id"));
+        logger.info("Created person id {}", personDataService.getDetachedField(firstPerson, "id"));
+        logger.info("Created person id {}", personDataService.getDetachedField(secondPerson, "id"));
 
-        Patient patient = PatientService.findPatientByName(firstPatient.getFirstName());
-        logger.info("Found patient id {} : {}", patientDataService.getDetachedField(patient, "id"), patient.toString());
-        assertEquals(firstPatient, patient);
+        Person person = PersonService.findPersonByName(firstPerson.getFirstName());
+        logger.info("Found person id {} : {}", personDataService.getDetachedField(person, "id"), person.toString());
+        assertEquals(firstPerson, person);
 
-        List<Patient> patients = patientService.getPatients();
-        assertTrue(patients.contains(firstPatient));
-        assertTrue(patients.contains(secondPatient));
+        List<Person> persons = personService.getPersons();
+        assertTrue(persons.contains(firstPerson));
+        assertTrue(persons.contains(secondPerson));
 
-        patientService.delete(firstPatient);
-        patient = patientService.findAuthorByName(firstPatient.getFirstName());
-        assertNull(patient);
+        personService.delete(firstPerson);
+        person = personService.findAuthorByName(firstPerson.getFirstName());
+        assertNull(person);
     }
 
 /*  // Add this back once I have a @Unique field
