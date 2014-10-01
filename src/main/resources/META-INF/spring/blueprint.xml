@@ -11,10 +11,12 @@
 
     <osgi:service ref="helloWorldService" interface="org.motechproject.simpleemr.service.HelloWorldService" />
 
-    <osgi:service ref="patientService" interface="org.motechproject.simpleemr.service.PatientService" />
+    <osgi:service ref="personService" interface="org.motechproject.simpleemr.service.PersonService" />
 
-    <osgi:reference id="patientDataService" interface="org.motechproject.simpleemr.repository.PatientDataService" />
+    <osgi:reference id="personDataService" interface="org.motechproject.simpleemr.repository.PersonDataService" />
 
     <osgi:reference id="facilityDataService" interface="org.motechproject.simpleemr.repository.FacilityDataService" />
+
+    <osgi:reference id="patientDataService" interface="org.motechproject.simpleemr.repository.PatientDataService" />
 
 </beans>

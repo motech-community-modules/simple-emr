@@ -5,8 +5,6 @@ import org.motechproject.mds.annotations.Field;
 import org.motechproject.mds.annotations.UIDisplayable;
 
 import org.apache.commons.lang.ObjectUtils;
-import javax.jdo.annotations.Unique;
-//import java.io.Serializable;
 import org.joda.time.DateTime;
 import java.util.List;
 import java.util.Objects;
