@@ -4,6 +4,7 @@ import org.motechproject.mds.annotations.Entity;
 import org.motechproject.mds.annotations.Field;
 import org.motechproject.mds.annotations.UIDisplayable;
 
+import javax.jdo.annotations.Unique;
 import org.apache.commons.lang.ObjectUtils;
 import java.util.List;
 import java.util.Objects;
@@ -12,6 +13,7 @@ import java.util.Objects;
 public class Concept {
 
     @Field(required = true)
+    @Unique
     @UIDisplayable(position = 0)
     private String name;
 

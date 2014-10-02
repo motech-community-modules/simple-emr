@@ -14,7 +14,7 @@ public class Observation {
     // In our OpenMRS module this is generic, e.g. Observation<T>, where T is the data type of
     // the concept represented in this observation. Does MDS support this? For now I might
     // play w/string values only until I have a chance to try it out on my dev box. Also, the 
-    // OpenMRS schema has depedentObservations, which I think we can live without for the purposes
+    // OpenMRS schema has dependentObservations, which I think we can live without for the purposes
     // of this demo.
 
     @Field

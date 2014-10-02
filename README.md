@@ -8,11 +8,21 @@ TODOs
 -----
 
 [ ] Domain
+
     [x] Basic domain objects
+
     [ ] Fill in hash code, equals on a few remaining classes
+
     [ ] Can I do Observation<T>?
-[ ] Repository
+
+    [ ] Change concept type and class to enums?
+
+[ ] Repository - mostly done, should define a few more lookups
+
 [ ] Service
+
 [ ] ITs
+
 [ ] CR
+
 [ ] Documentation

@@ -17,8 +17,12 @@ public class Patient {
     @Field
     private Facility facility;
 
-    public Patient(Person person, Facility facility) {
+    public Patient(Person person) {
         this.person = person;
+    }
+
+    public Patient(Person person, Facility facility) {
+        this(person);
         this.facility = facility;
     }
 

@@ -3,17 +3,19 @@ package org.motechproject.simpleemr.domain;
 import org.motechproject.mds.annotations.Entity;
 import org.motechproject.mds.annotations.Field;
 
+import javax.jdo.annotations.Unique;
+
 @Entity
 public class Facility {
 
     @Field(required = true)
+    @Unique
     private String name;
 
     @Field
     private String address;
 
     public Facility() {
-
     }
 
     public Facility(String name, String address) {

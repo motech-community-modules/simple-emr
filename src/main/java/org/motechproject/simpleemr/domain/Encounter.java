@@ -4,20 +4,34 @@ import org.motechproject.mds.annotations.Entity;
 import org.motechproject.mds.annotations.Field;
 
 import org.apache.commons.lang.ObjectUtils;
-import java.util.List;
 import java.util.Objects;
+import java.util.Date;
+import java.util.Set;
 
 @Entity
 public class Encounter {
 
+    @Field
     private Provider provider;
+
+    @Field
     private Facility facility;
+
+    @Field(required = true)
     private Date date;
+
+    @Field
     private Set<Observation> observations;
+
+    @Field(required = true)
     private Patient patient;
+
+    @Field
     private String encounterType;
 
-    public Encounter() {
+    public Encounter(Date date, Patient patient) {
+        this.date = date;
+        this.patient = patient;
     }
 
     public Provider getProvider() {
