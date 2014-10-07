@@ -31,12 +31,12 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public Person findPersonByName(String firstName) {
-        Person person = personDataService.findByName(firstName);
-        if (null == person) {
+    public List<Person> findPersonsByName(String firstName) {
+        List<Person> persons = personDataService.findByName(firstName);
+        if (null == persons) {
             return null;
         }
-        return person;
+        return persons;
     }
 
     @Override

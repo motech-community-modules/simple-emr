@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.motechproject.sample.domain.Person;
-import org.motechproject.sample.repository.PersonDataService;
-import org.motechproject.sample.service.PersonService;
+import org.motechproject.simpleemr.domain.Person;
+import org.motechproject.simpleemr.repository.PersonDataService;
+import org.motechproject.simpleemr.service.PersonService;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -48,13 +48,13 @@ public class PersonServiceIT extends BasePaxIT {
 
         personDataService.deleteAll();
 
-        Person firstPerson = personDataService.create("Marge", "Simpson");
-        Person secondPerson = personDataService.create("Homer", "Simpson");
+        Person firstPerson = personDataService.create(new Person("Marge", "Simpson"));
+        Person secondPerson = personDataService.create(new Person("Homer", "Simpson"));
 
         logger.info("Created person id {}", personDataService.getDetachedField(firstPerson, "id"));
         logger.info("Created person id {}", personDataService.getDetachedField(secondPerson, "id"));
 
-        Person person = PersonService.findPersonByName(firstPerson.getFirstName());
+        Person person = personService.findPersonsByName(firstPerson.getFirstName()).get(0);
         logger.info("Found person id {} : {}", personDataService.getDetachedField(person, "id"), person.toString());
         assertEquals(firstPerson, person);
 
@@ -63,8 +63,8 @@ public class PersonServiceIT extends BasePaxIT {
         assertTrue(persons.contains(secondPerson));
 
         personService.delete(firstPerson);
-        person = personService.findAuthorByName(firstPerson.getFirstName());
-        assertNull(person);
+        persons = personService.findPersonsByName(firstPerson.getFirstName());
+        assertTrue(persons.isEmpty());
     }
 
 /*  // Add this back once I have a @Unique field

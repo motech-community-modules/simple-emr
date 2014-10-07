@@ -13,7 +13,7 @@ public interface PersonService {
 
     void add(Person person);
 
-    Person findPersonByName(String firstName);
+    List<Person> findPersonsByName(String firstName);
 
     List<Person> getPersons();
 

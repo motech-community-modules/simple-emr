@@ -5,6 +5,6 @@ import org.junit.runners.Suite;
 
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({PersonServiceIT.class, HelloWorldServiceIT.class})
+@Suite.SuiteClasses({PersonServiceIT.class})
 public class IntegrationTests {
 }
