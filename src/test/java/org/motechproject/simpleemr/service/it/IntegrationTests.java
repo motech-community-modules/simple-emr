@@ -5,6 +5,6 @@ import org.junit.runners.Suite;
 
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({PersonServiceIT.class})
+@Suite.SuiteClasses({PersonServiceIT.class, PatientServiceIT.class})
 public class IntegrationTests {
 }

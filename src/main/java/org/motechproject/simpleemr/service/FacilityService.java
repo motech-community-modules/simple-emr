@@ -5,7 +5,7 @@ import java.util.List;
 import org.motechproject.simpleemr.domain.Facility;
 
 /**
- * Service interface for CRUD on simple repository persons.
+ * Service interface for CRUD on simple repository facilities.
  */
 public interface FacilityService {
 

@@ -17,6 +17,8 @@ TODOs
 
     [ ] Change concept type and class to enums?
 
+    [ ] Do I want deletes to cascade from patient/provider to person? encounters, etc...
+
 [ ] Repository - mostly done, should define a few more lookups
 
 [ ] Service

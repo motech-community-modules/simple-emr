@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.motechproject.simpleemr.domain.Person;
 import org.motechproject.simpleemr.repository.PersonDataService;
+import org.motechproject.simpleemr.repository.PatientDataService;
 import org.motechproject.simpleemr.service.PersonService;
 
 import org.junit.Test;
@@ -40,12 +41,15 @@ public class PersonServiceIT extends BasePaxIT {
     private PersonService personService;
     @Inject
     private PersonDataService personDataService;
+    @Inject
+    private PatientDataService patientDataService;
 
     @Test
     public void testPersonService() throws Exception {
 
         logger.info("testPersonService");
 
+        patientDataService.deleteAll();
         personDataService.deleteAll();
 
         Person firstPerson = personDataService.create(new Person("Marge", "Simpson"));
@@ -65,19 +69,7 @@ public class PersonServiceIT extends BasePaxIT {
         personService.delete(firstPerson);
         persons = personService.findPersonsByName(firstPerson.getFirstName());
         assertTrue(persons.isEmpty());
+
+        personDataService.deleteAll();
     }
-
-/*  // Add this back once I have a @Unique field
-    @Test(expected = JDOException.class)
-    public void shouldNotCreateDuplicates() throws Exception {
-
-        logger.info("shouldNotCreateDuplicates");
-
-        authorDataService.deleteAll();
-
-        Author ernest = authorDataService.create(new Author("Ernest"));
-
-        Author ernestAlso = authorDataService.create(new Author("Ernest"));
-    }
-    */
 }

@@ -11,10 +11,9 @@
 
     <osgi:service ref="personService" interface="org.motechproject.simpleemr.service.PersonService" />
 
+    <osgi:service ref="patientService" interface="org.motechproject.simpleemr.service.PatientService" />
 <!--
     <osgi:service ref="facilityService" interface="org.motechproject.simpleemr.service.FacilityService" />
-
-    <osgi:service ref="patientService" interface="org.motechproject.simpleemr.service.PatientService" />
 
     <osgi:service ref="providerService" interface="org.motechproject.simpleemr.service.ProviderService" />
 -->

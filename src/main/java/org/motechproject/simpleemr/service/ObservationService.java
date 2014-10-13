@@ -6,7 +6,7 @@ import org.motechproject.simpleemr.domain.Observation;
 import org.motechproject.simpleemr.domain.Concept;
 
 /**
- * Service interface for CRUD on simple repository persons.
+ * Service interface for CRUD on simple repository observations.
  */
 public interface ObservationService {
 

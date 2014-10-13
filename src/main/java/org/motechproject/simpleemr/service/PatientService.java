@@ -6,7 +6,7 @@ import org.motechproject.simpleemr.domain.Patient;
 import org.motechproject.simpleemr.domain.Person;
 
 /**
- * Service interface for CRUD on simple repository persons.
+ * Service interface for CRUD on simple repository patients.
  */
 public interface PatientService {
 

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Date;
 
 /**
- * Service interface for CRUD on simple repository persons.
+ * Service interface for CRUD on simple repository concepts.
  */
 public interface ConceptService {
 

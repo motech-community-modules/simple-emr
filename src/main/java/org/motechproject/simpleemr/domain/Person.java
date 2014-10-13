@@ -126,7 +126,7 @@ public class Person {
     public String toString() {
         return "Person{" +
                 "firstName='" + firstName + '\'' +
-                ", lastName'" + lastName +
+                ", lastName='" + lastName +
                 '}';
     }
 }
