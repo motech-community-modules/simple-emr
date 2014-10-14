@@ -11,12 +11,6 @@ import java.util.Date;
 @Entity
 public class Observation {
 
-    // In our OpenMRS module this is generic, e.g. Observation<T>, where T is the data type of
-    // the concept represented in this observation. Does MDS support this? For now I might
-    // play w/string values only until I have a chance to try it out on my dev box. Also, the 
-    // OpenMRS schema has dependentObservations, which I think we can live without for the purposes
-    // of this demo.
-
     @Field
     private Date date;
 
@@ -24,10 +18,10 @@ public class Observation {
     private Concept concept;
 
     @Field
-    private Patient patient;
+    private String value;
 
     @Field
-    private String value;
+    private Patient patient;
 
     public Observation(Date date, Concept concept, String value) {
         this.date = date;
@@ -72,6 +66,36 @@ public class Observation {
         this.value = value;
     }
 
-    // TODO: hashCode, equals
+
+    @Override
+    public String toString() {
+        return "Observation{" +
+                "date='" + date + '\'' +
+                ", concept='" + concept.toString() + '\'' +
+                ", value='" + value + '\'' +
+                ", patient='" + patient.toString() +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Observation)) return false;
+
+        Observation other = (Observation) o;
+
+        if (patient != null ? !patient.equals(other.patient) : other.patient != null) return false;
+        return date.equals(other.date) && concept.equals(other.concept) && patient.equals(other.patient);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 1;
+        hash = hash * 31 + ObjectUtils.hashCode(date);
+        hash = hash * 31 + ObjectUtils.hashCode(concept);
+        hash = hash * 31 + ObjectUtils.hashCode(value);
+        hash = hash * 31 + ObjectUtils.hashCode(patient);
+        return hash;
+    }
 
 }

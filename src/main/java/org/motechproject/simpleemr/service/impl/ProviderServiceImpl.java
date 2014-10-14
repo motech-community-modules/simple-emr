@@ -32,6 +32,11 @@ public class ProviderServiceImpl implements ProviderService {
     }
 
     @Override
+    public List<Provider> findProvidersByType(String type) {
+        return providerDataService.findByType(type);
+    }
+
+    @Override
     public List<Provider> getProviders() {
         return providerDataService.retrieveAll();
     }

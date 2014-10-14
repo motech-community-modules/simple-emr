@@ -12,6 +12,8 @@ import org.motechproject.simpleemr.repository.PersonDataService;
 import org.motechproject.simpleemr.service.PatientService;
 
 import org.junit.Test;
+import org.junit.Before;
+import org.junit.After;
 import org.junit.runner.RunWith;
 import org.ops4j.pax.exam.junit.PaxExam;
 import org.ops4j.pax.exam.spi.reactors.ExamReactorStrategy;
@@ -44,13 +46,16 @@ public class PatientServiceIT extends BasePaxIT {
     @Inject
     private PersonDataService personDataService;
 
+    @Before
+    public void setUp() {
+        patientDataService.deleteAll();
+        personDataService.deleteAll();
+    }
+
     @Test
     public void testPatientService() throws Exception {
 
         logger.info("testPatientService");
-
-        patientDataService.deleteAll();
-        personDataService.deleteAll();
 
         Person firstPerson = personDataService.create(new Person("Marge", "Simpson"));
         Patient firstPatient = patientDataService.create(new Patient(firstPerson));
@@ -68,22 +73,12 @@ public class PatientServiceIT extends BasePaxIT {
         patientService.delete(firstPatient);
         patients = patientService.getPatients();
         assertFalse(patients.contains(firstPatient));
+    }
 
+    @After
+    public void tearDown() {
         patientDataService.deleteAll();
         personDataService.deleteAll();
     }
 
-/*  // Add this back once I have a @Unique field
-    @Test(expected = JDOException.class)
-    public void shouldNotCreateDuplicates() throws Exception {
-
-        logger.info("shouldNotCreateDuplicates");
-
-        authorDataService.deleteAll();
-
-        Author ernest = authorDataService.create(new Author("Ernest"));
-
-        Author ernestAlso = authorDataService.create(new Author("Ernest"));
-    }
-    */
 }

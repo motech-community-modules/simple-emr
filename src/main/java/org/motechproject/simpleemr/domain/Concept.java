@@ -17,20 +17,23 @@ public class Concept {
     @UIDisplayable(position = 0)
     private String name;
 
-    @Field
+    @Field(required = true)
     @UIDisplayable(position = 1)
-    private String dataType;
+    private DataType dataType;
 
-    @Field
+    @Field(required = true)
     @UIDisplayable(position = 2)
-    private String conceptClass;
+    private ConceptClass conceptClass;
 
-    @Field
+    @Field(required = true)
     @UIDisplayable(position = 3)
     private String display;
 
-    public Concept(String name) {
+    public Concept(String name, DataType dataType, ConceptClass conceptClass, String display) {
         this.name = name;
+        this.dataType = dataType;
+        this.conceptClass = conceptClass;
+        this.display = display;
     }
 
     public String getName() {
@@ -41,19 +44,19 @@ public class Concept {
         this.name = name;
     }
 
-    public String getDataType() {
+    public DataType getDataType() {
         return dataType;
     }
 
-    public void setDataType(String dataType) {
+    public void setDataType(DataType dataType) {
         this.dataType = dataType;
     }
 
-    public String getConceptClass() {
+    public ConceptClass getConceptClass() {
         return conceptClass;
     }
 
-    public void setConceptClass(String conceptClass) {
+    public void setConceptClass(ConceptClass conceptClass) {
         this.conceptClass = conceptClass;
     }
 
@@ -65,7 +68,41 @@ public class Concept {
         this.display = display;
     }
 
-    // TODO: hashCode, equals
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
 
+        if (!(o instanceof Concept)) {
+            return false;
+        }
+
+        Concept other = (Concept) o;
+
+        return Objects.equals(name, other.name) && Objects.equals(dataType, other.dataType)
+                && Objects.equals(conceptClass, other.conceptClass) && Objects.equals(display, other.display);
+    }
+
+
+    @Override
+    public int hashCode() {
+        int hash = 1;
+        hash = hash * 31 + ObjectUtils.hashCode(name);
+        hash = hash * 31 + ObjectUtils.hashCode(dataType);
+        hash = hash * 31 + ObjectUtils.hashCode(conceptClass);
+        hash = hash * 31 + ObjectUtils.hashCode(display);
+        return hash;
+    }
+
+    @Override
+    public String toString() {
+        return "Concept{" +
+                "name='" + name + '\'' +
+                ", dataType='" + dataType.toString() + '\'' +
+                ", conceptClass='" + conceptClass.toString() + '\'' +
+                ", display='" + display +
+                '}';
+    }
 
 }

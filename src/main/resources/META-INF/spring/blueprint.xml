@@ -12,17 +12,28 @@
     <osgi:service ref="personService" interface="org.motechproject.simpleemr.service.PersonService" />
 
     <osgi:service ref="patientService" interface="org.motechproject.simpleemr.service.PatientService" />
-<!--
-    <osgi:service ref="facilityService" interface="org.motechproject.simpleemr.service.FacilityService" />
 
     <osgi:service ref="providerService" interface="org.motechproject.simpleemr.service.ProviderService" />
--->
-    <osgi:reference id="personDataService" interface="org.motechproject.simpleemr.repository.PersonDataService" />
 
-    <osgi:reference id="facilityDataService" interface="org.motechproject.simpleemr.repository.FacilityDataService" />
+    <osgi:service ref="facilityService" interface="org.motechproject.simpleemr.service.FacilityService" />
+
+    <osgi:service ref="conceptService" interface="org.motechproject.simpleemr.service.ConceptService" />
+
+    <osgi:service ref="encounterService" interface="org.motechproject.simpleemr.service.EncounterService" />
+
+    <osgi:service ref="observationService" interface="org.motechproject.simpleemr.service.ObservationService" />
+
+    <osgi:reference id="personDataService" interface="org.motechproject.simpleemr.repository.PersonDataService" />
 
     <osgi:reference id="patientDataService" interface="org.motechproject.simpleemr.repository.PatientDataService" />
 
     <osgi:reference id="providerDataService" interface="org.motechproject.simpleemr.repository.ProviderDataService" />
 
+    <osgi:reference id="facilityDataService" interface="org.motechproject.simpleemr.repository.FacilityDataService" />
+
+    <osgi:reference id="conceptDataService" interface="org.motechproject.simpleemr.repository.ConceptDataService" />
+
+    <osgi:reference id="encounterDataService" interface="org.motechproject.simpleemr.repository.EncounterDataService" />
+
+    <osgi:reference id="observationDataService" interface="org.motechproject.simpleemr.repository.ObservationDataService" />
 </beans>

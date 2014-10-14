@@ -11,6 +11,8 @@ import org.motechproject.simpleemr.repository.PatientDataService;
 import org.motechproject.simpleemr.service.PersonService;
 
 import org.junit.Test;
+import org.junit.Before;
+import org.junit.After;
 import org.junit.runner.RunWith;
 import org.ops4j.pax.exam.junit.PaxExam;
 import org.ops4j.pax.exam.spi.reactors.ExamReactorStrategy;
@@ -44,13 +46,15 @@ public class PersonServiceIT extends BasePaxIT {
     @Inject
     private PatientDataService patientDataService;
 
+    @Before
+    public void setUp() {
+        personDataService.deleteAll();
+    }
+
     @Test
     public void testPersonService() throws Exception {
 
         logger.info("testPersonService");
-
-        patientDataService.deleteAll();
-        personDataService.deleteAll();
 
         Person firstPerson = personDataService.create(new Person("Marge", "Simpson"));
         Person secondPerson = personDataService.create(new Person("Homer", "Simpson"));
@@ -69,7 +73,10 @@ public class PersonServiceIT extends BasePaxIT {
         personService.delete(firstPerson);
         persons = personService.findPersonsByName(firstPerson.getFirstName());
         assertTrue(persons.isEmpty());
+    }
 
+    @After
+    public void tearDown() {
         personDataService.deleteAll();
     }
 }

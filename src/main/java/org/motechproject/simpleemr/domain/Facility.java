@@ -15,9 +15,6 @@ public class Facility {
     @Field
     private String address;
 
-    public Facility() {
-    }
-
     public Facility(String name, String address) {
         this.name = name;
         this.address = address;

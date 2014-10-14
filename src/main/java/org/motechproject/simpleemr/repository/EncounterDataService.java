@@ -9,6 +9,4 @@ import org.motechproject.mds.service.MotechDataService;
 import java.util.List;
 
 public interface EncounterDataService extends MotechDataService<Encounter> {
-    @Lookup
-    List<Encounter> findByPatient(@LookupField(name = "patient") Patient patient);
 }

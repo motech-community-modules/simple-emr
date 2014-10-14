@@ -82,6 +82,51 @@ public class Encounter {
         this.encounterType = encounterType;
     }
 
-    // TODO: hashCode, equals
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (!(o instanceof Encounter)) {
+            return false;
+        }
+
+        Encounter other = (Encounter) o;
+
+        return equalObsData(other) && Objects.equals(date, other.date) && Objects.equals(facility, other.facility)
+                && Objects.equals(patient, other.patient) && Objects.equals(encounterType, other.encounterType);
+    }
+
+    public boolean equalObsData(Encounter other) {
+        if (observations.size() != other.observations.size()) {
+            return false;
+        }
+        return other.observations.containsAll(observations);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 1;
+        hash = hash * 31 + ObjectUtils.hashCode(provider);
+        hash = hash * 31 + ObjectUtils.hashCode(facility);
+        hash = hash * 31 + ObjectUtils.hashCode(date);
+        hash = hash * 31 + ObjectUtils.hashCode(observations);
+        hash = hash * 31 + ObjectUtils.hashCode(patient);
+        hash = hash * 31 + ObjectUtils.hashCode(encounterType);
+        return hash;
+    }
+
+    @Override
+    public String toString() {
+        return "Encounter{" +
+                "provider='" + provider.toString() + '\'' +
+                ", facility='" + facility.toString() + '\'' +
+                ", date='" + date.toString() + '\'' +
+                ", encounterType='" + encounterType + '\'' +
+                ", patient='" + patient.toString() + '\'' +
+                ", observations='" + observations.toString() +
+                '}';
+    }
 
 }

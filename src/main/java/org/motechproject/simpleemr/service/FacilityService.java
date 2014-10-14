@@ -13,9 +13,9 @@ public interface FacilityService {
 
     void add(Facility facility);
 
-    Facility findByName(String name);
+    Facility findFacilityByName(String name);
 
-    List<Facility> getFacility();
+    List<Facility> getFacilities();
 
     void delete(Facility facility);
 

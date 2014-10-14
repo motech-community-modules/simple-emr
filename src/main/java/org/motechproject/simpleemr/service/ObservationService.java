@@ -1,6 +1,7 @@
 package org.motechproject.simpleemr.service;
 
 import java.util.List;
+import java.util.Date;
 
 import org.motechproject.simpleemr.domain.Observation;
 import org.motechproject.simpleemr.domain.Concept;
@@ -10,7 +11,7 @@ import org.motechproject.simpleemr.domain.Concept;
  */
 public interface ObservationService {
 
-    void create();
+    void create(Date date, Concept concept, String value);
 
     void add(Observation observation);
 
