@@ -94,15 +94,9 @@ public class Encounter {
 
         Encounter other = (Encounter) o;
 
-        return equalObsData(other) && Objects.equals(date, other.date) && Objects.equals(facility, other.facility)
-                && Objects.equals(patient, other.patient) && Objects.equals(encounterType, other.encounterType);
-    }
-
-    public boolean equalObsData(Encounter other) {
-        if (observations.size() != other.observations.size()) {
-            return false;
-        }
-        return other.observations.containsAll(observations);
+        return Objects.equals(date, other.date) && Objects.equals(facility, other.facility)
+                && Objects.equals(patient, other.patient) && Objects.equals(encounterType, other.encounterType)
+                && Objects.equals(observations, other.observations);
     }
 
     @Override

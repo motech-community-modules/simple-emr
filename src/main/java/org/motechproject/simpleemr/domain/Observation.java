@@ -3,6 +3,7 @@ package org.motechproject.simpleemr.domain;
 import org.motechproject.mds.annotations.Entity;
 import org.motechproject.mds.annotations.Field;
 
+import javax.jdo.annotations.Persistent;
 import org.apache.commons.lang.ObjectUtils;
 import java.util.List;
 import java.util.Objects;
@@ -15,6 +16,7 @@ public class Observation {
     private Date date;
 
     @Field
+    @Persistent(defaultFetchGroup = "true")
     private Concept concept;
 
     @Field
@@ -85,7 +87,7 @@ public class Observation {
         Observation other = (Observation) o;
 
         if (patient != null ? !patient.equals(other.patient) : other.patient != null) return false;
-        return date.equals(other.date) && concept.equals(other.concept) && patient.equals(other.patient);
+        return date.equals(other.date) && concept.equals(other.concept) && value.equals(other.value);
     }
 
     @Override

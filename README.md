@@ -11,21 +11,19 @@ TODOs
 
     [x] Basic domain objects
 
-    [ ] Fill in hash code, equals on a few remaining classes
+    [x] Fill in hash code, equals on a few remaining classes
 
-    [ ] Can I do Observation<T>?
+    [x] Change concept type and class to enums?
 
-    [ ] Change concept type and class to enums?
+    [x] Do I want deletes to cascade from patient/provider to person?
 
-    [ ] Do I want deletes to cascade from patient/provider to person? encounters, etc...
-
-[ ] Repository - mostly done, should define a few more lookups
+[ ] Repository - more lookups?
 
 [ ] Service
 
-    [ ] Events
+    [ ] Events?
 
-[ ] ITs
+[x] ITs
 
 [ ] CR
 

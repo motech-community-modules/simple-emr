@@ -1,8 +1,8 @@
 package org.motechproject.simpleemr.service.it;
 
 import java.sql.BatchUpdateException;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.List;
 import java.util.Date;
 
@@ -76,39 +76,26 @@ public class EncounterServiceIT extends BasePaxIT {
 
         logger.info("testEncounterService");
 
-        Concept firstConcept = conceptDataService.create(new Concept("BLOOD TYPE", DataType.CODED,
+        Concept concept = conceptDataService.create(new Concept("BLOOD TYPE", DataType.CODED,
             ConceptClass.QUESTION, "What is your blood type?"));
-        Concept secondConcept = conceptDataService.create(new Concept("HAIR COLOR", DataType.CODED,
-            ConceptClass.QUESTION, "What is your hair color?"));
 
-        Observation firstObservation = observationDataService.create(new Observation(new Date(), firstConcept, "AB"));
-        Observation secondObservation = observationDataService.create(new Observation(new Date(), secondConcept, "blue"));
-        Observation thirdObservation = observationDataService.create(new Observation(new Date(), secondConcept, "n/a"));
+        Observation observation = observationDataService.create(new Observation(new Date(), concept, "AB"));
+        Person person = personDataService.create(new Person("Marge", "Simpson"));
+        Patient patient = patientDataService.create(new Patient(person));
 
-        Person firstPerson = personDataService.create(new Person("Marge", "Simpson"));
-        Person secondPerson = personDataService.create(new Person("Homer", "Simpson"));
+        Encounter encounter = new Encounter(new Date(), patient);
+        Set<Observation> observations = new HashSet<Observation>();
+        observations.add(observation);
+        encounter.setObservations(observations);
+        encounterDataService.create(encounter);
 
-        Patient firstPatient = patientDataService.create(new Patient(firstPerson));
-        Patient secondPatient = patientDataService.create(new Patient(secondPerson));
+        logger.info("Created encounter id {}", encounterDataService.getDetachedField(encounter, "id"));
 
-        Encounter firstEncounter = new Encounter(new Date(), firstPatient);
-        firstEncounter.setObservations(new ArrayList<Observation>(Arrays.asList(firstObservation, secondObservation)));
-        encounterDataService.create(firstEncounter);
+        assertEquals(encounter.getObservations().size(), 1);
 
-        Encounter secondEncounter = new Encounter(new Date(), secondPatient);
-        secondEncounter.setObservations(new ArrayList<Observation>(Arrays.asList(thirdObservation)));
-        encounterDataService.create(secondEncounter);
-
-        logger.info("Created encounter id {}", encounterDataService.getDetachedField(firstEncounter, "id"));
-        logger.info("Created encounter id {}", encounterDataService.getDetachedField(secondEncounter, "id"));
-
+        encounterService.delete(encounter);
         List<Encounter> encounters = encounterService.getEncounters();
-        assertTrue(encounters.contains(firstEncounter));
-        assertTrue(encounters.contains(secondEncounter));
-
-        encounterService.delete(firstEncounter);
-        encounters = encounterService.getEncounters();
-        assertFalse(encounters.contains(firstEncounter));
+        assertEquals(encounters.size(), 0);
     }
 
     @After
