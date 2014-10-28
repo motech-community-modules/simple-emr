@@ -16,7 +16,6 @@ public class Observation {
     private Date date;
 
     @Field
-    @Persistent(defaultFetchGroup = "true")
     private Concept concept;
 
     @Field

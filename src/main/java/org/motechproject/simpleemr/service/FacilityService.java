@@ -20,4 +20,5 @@ public interface FacilityService {
     void delete(Facility facility);
 
     void update(Facility facility);
+
 }
