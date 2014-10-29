@@ -11,10 +11,9 @@ import java.util.Set;
 @Entity
 public class Encounter {
 
-    @Field
+    @Field(required = true)
     private Provider provider;
 
-    @Field
     private Facility facility;
 
     @Field(required = true)
@@ -29,9 +28,10 @@ public class Encounter {
     @Field
     private String encounterType;
 
-    public Encounter(Date date, Patient patient) {
+    public Encounter(Date date, Patient patient, Provider provider) {
         this.date = date;
         this.patient = patient;
+        this.provider = provider;
     }
 
     public Provider getProvider() {

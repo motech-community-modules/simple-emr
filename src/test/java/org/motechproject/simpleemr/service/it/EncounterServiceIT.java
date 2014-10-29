@@ -10,6 +10,7 @@ import org.motechproject.simpleemr.domain.Encounter;
 import org.motechproject.simpleemr.domain.Concept;
 import org.motechproject.simpleemr.domain.Observation;
 import org.motechproject.simpleemr.domain.Patient;
+import org.motechproject.simpleemr.domain.Provider;
 import org.motechproject.simpleemr.domain.Person;
 import org.motechproject.simpleemr.domain.DataType;
 import org.motechproject.simpleemr.domain.ConceptClass;
@@ -17,6 +18,7 @@ import org.motechproject.simpleemr.repository.EncounterDataService;
 import org.motechproject.simpleemr.repository.ConceptDataService;
 import org.motechproject.simpleemr.repository.ObservationDataService;
 import org.motechproject.simpleemr.repository.PatientDataService;
+import org.motechproject.simpleemr.repository.ProviderDataService;
 import org.motechproject.simpleemr.repository.PersonDataService;
 
 import org.motechproject.simpleemr.service.EncounterService;
@@ -60,6 +62,8 @@ public class EncounterServiceIT extends BasePaxIT {
     @Inject
     private PatientDataService patientDataService;
     @Inject
+    private ProviderDataService providerDataService;
+    @Inject
     private PersonDataService personDataService;
 
     @Before
@@ -68,6 +72,7 @@ public class EncounterServiceIT extends BasePaxIT {
         observationDataService.deleteAll();
         conceptDataService.deleteAll();
         patientDataService.deleteAll();
+        providerDataService.deleteAll();
         personDataService.deleteAll();
     }
 
@@ -80,10 +85,14 @@ public class EncounterServiceIT extends BasePaxIT {
             ConceptClass.QUESTION, "What is your blood type?"));
 
         Observation observation = observationDataService.create(new Observation(new Date(), concept, "AB"));
-        Person person = personDataService.create(new Person("Marge", "Simpson"));
-        Patient patient = patientDataService.create(new Patient(person));
 
-        Encounter encounter = new Encounter(new Date(), patient);
+        Person julius = personDataService.create(new Person("Julius", "Hibbert"));
+        Provider provider = providerDataService.create(new Provider(julius));
+
+        Person marge = personDataService.create(new Person("Marge", "Simpson"));
+        Patient patient = patientDataService.create(new Patient(marge));
+
+        Encounter encounter = new Encounter(new Date(), patient, provider);
         Set<Observation> observations = new HashSet<Observation>();
         observations.add(observation);
         encounter.setObservations(observations);
@@ -104,6 +113,7 @@ public class EncounterServiceIT extends BasePaxIT {
         observationDataService.deleteAll();
         conceptDataService.deleteAll();
         patientDataService.deleteAll();
+        providerDataService.deleteAll();
         personDataService.deleteAll();
     }
 
