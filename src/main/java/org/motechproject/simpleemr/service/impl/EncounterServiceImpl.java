@@ -2,6 +2,7 @@ package org.motechproject.simpleemr.service.impl;
 
 import org.motechproject.simpleemr.domain.Encounter;
 import org.motechproject.simpleemr.domain.Patient;
+import org.motechproject.simpleemr.domain.Provider;
 import org.motechproject.simpleemr.repository.EncounterDataService;
 import org.motechproject.simpleemr.service.EncounterService;
 
@@ -23,8 +24,8 @@ public class EncounterServiceImpl implements EncounterService {
     private EncounterDataService encounterDataService;
 
     @Override
-    public void create(Date date, Patient patient) {
-        encounterDataService.create(new Encounter(date, patient));
+    public void create(Date date, Patient patient, Provider provider) {
+        encounterDataService.create(new Encounter(date, patient, provider));
     }
 
     @Override

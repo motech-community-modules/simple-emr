@@ -2,6 +2,7 @@ package org.motechproject.simpleemr.service;
 
 import org.motechproject.simpleemr.domain.Encounter;
 import org.motechproject.simpleemr.domain.Patient;
+import org.motechproject.simpleemr.domain.Provider;
 
 import java.util.List;
 import java.util.Date;
@@ -11,7 +12,7 @@ import java.util.Date;
  */
 public interface EncounterService {
 
-    void create(Date date, Patient patient);
+    void create(Date date, Patient patient, Provider provider);
 
     void add(Encounter encounter);
 
